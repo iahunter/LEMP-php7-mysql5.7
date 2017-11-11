@@ -75,13 +75,16 @@ sudo service mysql restart
 # Nginx Configuration
 # If NginX does start, then you can always debug the issue by running "nginx" at terminal. This checks for any error in configuration of Nginx and prints out error if any. 
 echo "Configuring Nginx"
-sudo cp /var/www/provision/config/nginx_vhost /etc/nginx/sites-available/nginx_vhost
+sudo cp /vagrant/provision/config/nginx_vhost /etc/nginx/sites-available/nginx_vhost
 sudo ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/
 
 sudo rm -rf /etc/nginx/sites-available/default
 
 # Restart Nginx for the config to take effect
 sudo service nginx restart
+
+sudo service mysql restart
+sudo service php7.0-fpm restart
 
 echo "Installing Composer"
 sudo curl -sS https://getcomposer.org/installer | sudo php
